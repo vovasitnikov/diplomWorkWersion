@@ -7,7 +7,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.GitHub.vovasitnikov</groupId>
+    <groupId>com.GitHub.Tor1ant</groupId>
     <artifactId>stats-server</artifactId>
     <packaging>pom</packaging>
 
@@ -24,6 +24,9 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
     </dependencies>
 </project>
