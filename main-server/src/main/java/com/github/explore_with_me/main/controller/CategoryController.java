@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/*
+Публичный API для работы с категориями
+ */
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {

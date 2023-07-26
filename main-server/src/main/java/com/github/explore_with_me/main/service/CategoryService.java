@@ -2,12 +2,14 @@ package com.github.explore_with_me.main.service;
 
 import com.github.explore_with_me.main.dto.CategoryDto;
 import com.github.explore_with_me.main.dto.NewCategoryDto;
+import com.github.explore_with_me.main.dto.NewUserRequest;
 import com.github.explore_with_me.main.exception.NotFoundException;
 import com.github.explore_with_me.main.model.Category;
 import com.github.explore_with_me.main.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +37,7 @@ public class CategoryService {
 
     @Transactional(rollbackFor = Exception.class)
     public CategoryDto create(final NewCategoryDto newCategoryDto) {
+        validate(newCategoryDto);
         Category category = Category.builder().name(newCategoryDto.getName()).build();
         categoryRepository.save(category);
         return new CategoryDto(category);
@@ -53,5 +56,12 @@ public class CategoryService {
     public void delete(final Long catId) {
         Category category = categoryRepository.findById(catId).orElseThrow(() -> new NotFoundException("Category with id=" + catId + " was not found"));
         categoryRepository.delete(category);
+    }
+
+    private void validate(NewCategoryDto categoryDto) {
+        if (categoryDto.getName() == null)
+            throw new ValidationException("Category name cannot be empty.");
+        if (categoryDto.getName().isBlank())
+            throw new ValidationException("Category name cannot be empty.");
     }
 }
