@@ -9,5 +9,8 @@ public interface StatsService {
 
     void saveHit(InputHitDto inputHitDto);
 
-    List<StatsDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique);
+    List<StatsDto> getStats(LocalDateTime start,
+                            LocalDateTime end,
+                            List<String> uris,
+                            boolean unique);
 }
